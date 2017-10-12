@@ -1,6 +1,6 @@
 require './test/test_helper'
 
-class KiruscompanyTest < Minitest::Test
+class KirusCompanyTest < Minitest::Test
   def test_exists
     assert Kirus::Company
   end
@@ -10,7 +10,7 @@ class KiruscompanyTest < Minitest::Test
     assert_equal Kirus::Company, company.class
 
     assert_equal 298486374, company.id
-    assert_equal "MyString", company.name
+    assert_equal "NuSkin", company.name
   end
 
   def test_it_gives_back_all_companys

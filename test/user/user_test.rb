@@ -10,8 +10,8 @@ class KirusUserTest < Minitest::Test
     assert_equal Kirus::User, user.class
 
     assert_equal 298486374, user.id
-    assert_equal "MyString", user.first_name
-    assert_equal "MyString", user.last_name
+    assert_equal "Rep", user.first_name
+    assert_equal "Reppy", user.last_name
   end
 
   def test_it_gives_back_all_users

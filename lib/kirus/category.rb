@@ -1,17 +1,15 @@
 module Kirus
-  class Market
-    attr_reader :id, :name, :description
+  class Category
+    attr_reader :id, :name
     def initialize(attributes)
       @id = attributes["id"]
       @name = attributes["name"]
-      @description = attributes["description"]
     end
 
     def self.find(id)
       conn = Faraday.new(:url => API_URL)
-      response = conn.get "/admin/markets/#{id}" do |request|
+      response = conn.get "/categories/#{id}" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
 
@@ -21,14 +19,13 @@ module Kirus
 
     def self.all
       conn = Faraday.new(:url => API_URL)
-      response = conn.get "/admin/markets" do |request|
+      response = conn.get "/categories" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
 
-      markets = JSON.parse(response.body)
-      markets.map { |attributes| new(attributes) }
+      categories = JSON.parse(response.body)
+      categories.map { |attributes| new(attributes) }
     end
   end
 end

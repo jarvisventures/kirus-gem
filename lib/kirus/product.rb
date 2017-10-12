@@ -15,13 +15,23 @@ module Kirus
     end
 
     def self.find(id)
-      response = Faraday.get("#{API_URL}/products/#{id}")
+      conn = Faraday.new(:url => API_URL)
+      response = conn.get "/products/#{id}" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+
       attributes = JSON.parse(response.body)
       new(attributes)
     end
 
     def self.all
-      response = Faraday.get("#{API_URL}/products")
+      conn = Faraday.new(:url => API_URL)
+      response = conn.get "/products" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+
       products = JSON.parse(response.body)
       products.map { |attributes| new(attributes) }
     end

@@ -7,12 +7,12 @@ class KirusProductTest < Minitest::Test
   end
 
   def test_it_gives_back_a_single_product
-    product = Kirus::Product.find(298486374)
+    product = Kirus::Product.find(980190962)
     assert_equal Kirus::Product, product.class
 
-    assert_equal 298486374, product.id
-    assert_equal "MyString", product.name
-    assert_equal "MyText", product.description
+    assert_equal 980190962, product.id
+    assert_equal "Nuku Hiva Juice", product.name
+    assert_equal "Juice from the nectar of the gods.  Straight from Japan's deserts.", product.description
     assert (DateTime.parse(product.available_on) rescue nil).is_a?(DateTime)
   end
 

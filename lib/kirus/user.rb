@@ -14,13 +14,25 @@ module Kirus
     end
 
     def self.find(id)
-      response = Faraday.get("#{API_URL}/users/#{id}")
+      conn = Faraday.new(:url => API_URL)
+      response = conn.get "/admin/users/#{id}" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+
       attributes = JSON.parse(response.body)
       new(attributes)
     end
 
     def self.all
-      response = Faraday.get("#{API_URL}/users")
+      conn = Faraday.new(:url => API_URL)
+      response = conn.get "/admin/users" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+
       users = JSON.parse(response.body)
       users.map { |attributes| new(attributes) }
     end
