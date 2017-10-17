@@ -41,8 +41,8 @@ module Kirus
           request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
           request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
         end
-
         users = JSON.parse(response.body)
+        # TODO use active model serializers
         users.map { |attributes| new(attributes) }
       end
 
@@ -70,12 +70,7 @@ module Kirus
           request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
         end
 
-        JSON.parse(response.body)
-        # message = JSON.parse(response.body)
-        # output = Hash.new
-        # output[:message] = message
-        # output[:status] = response.status
-        # output
+        output(response)
       end
 
       def update(attributes)
@@ -98,7 +93,17 @@ module Kirus
           request.body = self.as_json
         end
 
-        x = request.body
+        output(response)
+      end
+
+      private
+
+      def output(response)
+        output = Hash.new
+        output[:status] = response.status
+        output[:response] = response.body
+
+        output
       end
     end
   end
