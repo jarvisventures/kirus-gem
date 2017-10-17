@@ -20,4 +20,19 @@ class KirusMarketTest < Minitest::Test
     assert result.kind_of?(Array)
     assert result.first.kind_of?(Kirus::Market)
   end
+
+  def test_it_delete_a_market
+    result = Kirus::Admin::Market.first.delete
+
+    assert result[:status] == 200
+    refute_nil result
+  end
+
+  def test_it_updates_a_market
+    result = Kirus::Admin::Market.first.update(first_name: 'seth')
+
+    assert_equal "seth", result[:response]["first_name"]
+    assert result[:status] == 200
+    refute_nil result
+  end
 end

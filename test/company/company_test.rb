@@ -19,4 +19,19 @@ class KirusCompanyTest < Minitest::Test
     assert result.kind_of?(Array)
     assert result.first.kind_of?(Kirus::Company)
   end
+
+  def test_it_delete_a_company
+    result = Kirus::Company.first.delete
+
+    assert result[:status] == 200
+    refute_nil result
+  end
+
+  def test_it_updates_a_company
+    result = Kirus::Company.first.update(first_name: 'company1')
+
+    assert_equal "company1", result[:response]["first_name"]
+    assert result[:status] == 200
+    refute_nil result
+  end
 end
