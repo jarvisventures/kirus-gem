@@ -1,7 +1,8 @@
 module Kirus
   module Admin
     class User
-      attr_reader :id, :email, :first_name, :middle_name, :last_name, :salutation, :profile_image, :phone, :role
+      # include ActiveModel::SerializerSupport
+      attr_reader :id, :email, :first_name, :middle_name, :last_name, :salutation, :profile_image, :phone, :role, :variants
       def initialize(attributes)
         @id = attributes["id"]
         @email = attributes["email"]

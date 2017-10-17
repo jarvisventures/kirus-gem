@@ -5,10 +5,12 @@ require 'json'
 
 require 'kirus/admin/market'
 require 'kirus/admin/user'
+require 'kirus/cart'
 require 'kirus/category'
 require 'kirus/company'
 require 'kirus/order'
 require 'kirus/product'
+require 'kirus/variant'
 
 API_URL = "http://localhost:3000"
 

@@ -17,9 +17,16 @@ class KirusProductTest < Minitest::Test
   end
 
   def test_it_gives_back_all_products
-    result = Kirus::Product.all
+    products = Kirus::Product.all
 
-    assert result.kind_of?(Array)
-    assert result.first.kind_of?(Kirus::Product)
+    assert products.kind_of?(Array)
+    assert products.first.kind_of?(Kirus::Product)
+  end
+
+  def test_it_has_at_least_one_variant
+    product = Kirus::Product.find(980190962)
+    assert_equal Kirus::Product, product.class
+
+    assert product.variants.first.kind_of?(Kirus::Variant)
   end
 end

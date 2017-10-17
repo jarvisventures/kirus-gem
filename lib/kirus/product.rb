@@ -1,6 +1,6 @@
 module Kirus
   class Product
-    attr_reader :id, :name, :description, :slug, :available_on, :discontinue_on, :deleted_at, :meta_description, :promotionable, :meta_title
+    attr_reader :id, :name, :description, :slug, :available_on, :discontinue_on, :deleted_at, :meta_description, :promotionable, :meta_title, :price, :variants
     def initialize(attributes)
       @id = attributes["id"]
       @name = attributes["name"]
@@ -12,6 +12,8 @@ module Kirus
       @meta_description = attributes["meta_description"]
       @promotionable = attributes["promotionable"]
       @meta_title = attributes["meta_title"]
+      @price = 10.00
+      @variants = attributes["variants_including_master"].map { |attributes| Kirus::Variant.new(attributes) }
     end
 
     def self.find(id)
