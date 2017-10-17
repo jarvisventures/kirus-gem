@@ -10,7 +10,7 @@ class KirusOrderTest < Minitest::Test
     assert_equal Kirus::Order, order.class
 
     assert_equal 980190962, order.id
-    assert_equal "MyString", order.state
+    assert_equal "MyString", order.number
   end
 
   def test_it_gives_back_all_orders
@@ -20,17 +20,17 @@ class KirusOrderTest < Minitest::Test
     assert result.first.kind_of?(Kirus::Order)
   end
 
-  def test_it_delete_a_order
-    result = Kirus::Order.first.delete
-
-    assert result[:status] == 200
-    refute_nil result
-  end
+  # def test_it_deletes_a_order
+  #   result = Kirus::Order.first.delete
+  #
+  #   assert result[:status] == 200
+  #   refute_nil result
+  # end
 
   def test_it_updates_a_order
-    result = Kirus::Order.first.update(first_name: 'seth')
+    result = Kirus::Order.first.update(number: 'seth')
 
-    assert_equal "seth", result[:response]["first_name"]
+    assert_equal "seth", result[:response]["number"]
     assert result[:status] == 200
     refute_nil result
   end

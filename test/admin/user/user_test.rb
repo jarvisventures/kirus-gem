@@ -22,12 +22,12 @@ class KirusUserTest < Minitest::Test
     assert result.first.kind_of?(Kirus::Admin::User)
   end
 
-  def test_it_delete_a_user
-    result = Kirus::Admin::User.first.delete
-
-    assert result[:status] == 500
-    refute_nil result
-  end
+  # def test_it_deletes_a_user
+  #   result = Kirus::Admin::User.first.delete
+  #
+  #   assert result[:status] == 200
+  #   refute_nil result
+  # end
 
   def test_it_updates_a_user
     result = Kirus::Admin::User.first.update(first_name: 'seth')

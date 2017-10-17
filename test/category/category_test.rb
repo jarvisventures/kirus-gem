@@ -20,12 +20,12 @@ class KirusCategoryTest < Minitest::Test
     assert result.first.kind_of?(Kirus::Category)
   end
 
-  def test_it_delete_a_category
-    result = Kirus::Category.first.delete
-
-    assert result[:status] == 200
-    refute_nil result
-  end
+  # def test_it_deletes_a_category
+  #   result = Kirus::Category.first.delete
+  #
+  #   assert result[:status] == 200
+  #   refute_nil result
+  # end
 
   def test_it_updates_a_category
     result = Kirus::Category.first.update(name: 'category1')

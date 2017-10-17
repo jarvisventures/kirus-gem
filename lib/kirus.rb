@@ -3,12 +3,12 @@ require 'faraday'
 require 'faraday_middleware'
 require 'json'
 
+require 'kirus/admin/market'
+require 'kirus/admin/user'
 require 'kirus/category'
 require 'kirus/company'
-require 'kirus/market'
 require 'kirus/order'
 require 'kirus/product'
-require 'kirus/admin/user'
 
 API_URL = "http://localhost:3000"
 

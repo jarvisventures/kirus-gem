@@ -1,9 +1,18 @@
 module Kirus
   class Order
-    attr_reader :id, :state
+    attr_reader :id, :state, :number
     def initialize(attributes)
       @id = attributes["id"]
       @state = attributes["state"]
+      @number = attributes["number"]
+    end
+
+    def as_json(*)
+      {
+        id: @id,
+        state: @state,
+        number: @number
+      }
     end
 
     def self.find(id)

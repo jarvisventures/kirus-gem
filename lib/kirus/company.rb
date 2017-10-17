@@ -6,6 +6,13 @@ module Kirus
       @name = attributes["name"]
     end
 
+    def as_json(*)
+      {
+        id: @id,
+        name: @name
+      }
+    end
+
     def self.find(id)
       conn = Faraday.new(:url => API_URL)
       response = conn.get "/companies/#{id}" do |request|
