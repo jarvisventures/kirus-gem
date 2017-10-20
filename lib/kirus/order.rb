@@ -71,6 +71,28 @@ module Kirus
       self.save
     end
 
+    def self.create(attributes)
+      @order = Kirus::Order.new({})
+
+      attributes.each do |key, value|
+        @order.instance_variable_set("@#{key.to_s}", value)
+      end
+
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+      response = conn.post "/orders" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+        request.body = @order.as_json
+      end
+
+      output(response)
+    end
+
     def save
       conn = Faraday.new(:url => API_URL) do |faraday|
         faraday.request :json
@@ -90,6 +112,14 @@ module Kirus
     private
 
     def output(response)
+      output = Hash.new
+      output[:status] = response.status
+      output[:response] = response.body
+
+      output
+    end
+
+    def self.output(response)
       output = Hash.new
       output[:status] = response.status
       output[:response] = response.body

@@ -2,6 +2,7 @@ require 'kirus/version'
 require 'faraday'
 require 'faraday_middleware'
 require 'json'
+require 'ostruct'
 
 require 'kirus/admin/market'
 require 'kirus/admin/user'

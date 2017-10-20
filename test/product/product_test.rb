@@ -16,6 +16,12 @@ class KirusProductTest < Minitest::Test
     assert (DateTime.parse(product.available_on) rescue nil).is_a?(DateTime)
   end
 
+  def test_it_responds_to_product_not_found
+    product = Kirus::Product.find(-1)
+
+    assert_nil product
+  end
+
   def test_it_gives_back_all_products
     products = Kirus::Product.all
 

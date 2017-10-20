@@ -23,8 +23,16 @@ module Kirus
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
 
-      attributes = JSON.parse(response.body)
-      new(attributes)
+      if response.status == 200 && response.body != "null"
+        attributes = JSON.parse(response.body)
+        new(attributes)
+      elsif response.status == 200 && response.body == "null"
+        nil
+      elsif response.status == 401
+        nil
+      elsif response.status == 404
+        nil
+      end
     end
 
     def self.all
