@@ -7,8 +7,7 @@ class KirusCartTest < Minitest::Test
 
   def test_it_adds_to_cart_with_existing_order
     order = Kirus::Order.first
-    array_of_variant_hashes = [{variant_id: "113629430", quantity: "2"}, {variant_id: "298486374", quantity: "2"}]
-    Kirus::Cart.add_item_to_existing_order(order.id, array_of_variant_hashes)
+    Kirus::Cart.add_item_to_existing_order(order.id, "113629430", "2")
   end
 
   def test_it_adds_to_cart_without_existing_order

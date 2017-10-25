@@ -2,9 +2,9 @@ module Kirus
   class Cart
     def self.add_to_cart(order_id = nil, variant_id, quantity)
       if order_id
-        create_new_order(order_id, variant_id, quantity)
+        add_item_to_existing_order(order_id, variant_id, quantity)
       else
-        add_item_to_existing_order(order_id, array_of_variant_hashes)
+        create_new_order(order_id, variant_id, quantity)
       end
     end
 
@@ -23,7 +23,7 @@ module Kirus
       end
     end
 
-    def self.add_item_to_existing_order(order_id, array_of_variant_hashes)
+    def self.add_item_to_existing_order(order_id, variant_id, quantity)
       conn = Faraday.new(url: API_URL) do |faraday|
         faraday.request :json
         faraday.response :json
@@ -31,10 +31,9 @@ module Kirus
       end
 
       @order = {order: {id: 1, order_items_attributes: {}}}
-      array_of_variant_hashes.each_with_index do |variant_hash, index|
-        @order[:order][:order_items_attributes]["#{index}"] = variant_hash
-      end
-      
+      item = {variant_id: "#{variant_id}", quantity: "#{quantity}"}
+      @order[:order][:order_items_attributes]["1"] = item
+
       response = conn.patch "/orders/#{order_id}" do |request|
         request.headers['Content-Type'] = 'application/json'
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
