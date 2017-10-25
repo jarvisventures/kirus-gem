@@ -7,6 +7,7 @@ module Kirus
       @number = attributes["number"]
     end
 
+    # TODO delete?
     def as_json(*)
       {
         id: @id,
@@ -87,7 +88,7 @@ module Kirus
         request.headers['Content-Type'] = 'application/json'
         request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-        request.body = @order.as_json
+        request.body = @order.to_json
       end
 
       output(response)
@@ -103,7 +104,7 @@ module Kirus
         request.headers['Content-Type'] = 'application/json'
         request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-        request.body = self.as_json
+        request.body = self.to_json
       end
 
       output(response)
