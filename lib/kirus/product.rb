@@ -42,8 +42,18 @@ module Kirus
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
 
-      products = JSON.parse(response.body)
-      products.map { |attributes| new(attributes) }
+      if response.status == 200 && response.body != "null"
+        products = JSON.parse(response.body)
+        products.map { |attributes| new(attributes) }
+      elsif response.status == 200 && response.body == "null"
+        []
+      elsif response.status == 401
+        []
+      elsif response.status == 404
+        []
+      elsif response.status == 500
+        []
+      end
     end
 
     def self.first
