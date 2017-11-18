@@ -12,7 +12,7 @@ module Kirus
       @meta_description = attributes["meta_description"]
       @promotionable = attributes["promotionable"]
       @meta_title = attributes["meta_title"]
-      @price = 10.00
+      @price = 11.99
       @variants = attributes["variants_including_master"].map { |attributes| Kirus::Variant.new(attributes) }
     end
 
