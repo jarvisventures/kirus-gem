@@ -19,4 +19,9 @@ class KirusOrderTest < Minitest::Test
 
     assert_equal 980190962, order.id
   end
+
+  def test_get_order
+    order = Kirus::Order.find(10)
+    binding.pry
+  end
 end
