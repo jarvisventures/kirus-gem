@@ -13,7 +13,8 @@ require 'kirus/order'
 require 'kirus/product'
 require 'kirus/variant'
 
-API_URL = "http://localhost:3000"
+# API_URL = "http://localhost:3000"
+API_URL = "https://kirus-api-staging.herokuapp.com"
 
 module Kirus
   def make_request(method, path)
