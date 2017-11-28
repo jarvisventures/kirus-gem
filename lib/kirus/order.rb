@@ -1,12 +1,13 @@
 module Kirus
   class Order
-    attr_reader :id, :state, :number, :item_count, :order_items
+    attr_reader :id, :state, :number, :item_count, :order_items, :item_total
     def initialize(attributes)
       @id = attributes["id"]
       @state = attributes["state"]
       @number = attributes["number"]
       @item_count = attributes["item_count"]
       @order_items = attributes["order_items"]
+      @item_total = attributes["item_total"]
     end
 
     # TODO delete?
@@ -16,7 +17,8 @@ module Kirus
         state: @state,
         number: @number,
         item_count: @item_count,
-        order_items: @order_items
+        order_items: @order_items,
+        item_total: @item_total
       }
     end
 
