@@ -1,6 +1,6 @@
 module Kirus
   class Product
-    attr_reader :id, :name, :description, :slug, :available_on, :discontinue_on, :deleted_at, :meta_description, :promotionable, :meta_title, :price, :variants
+    attr_reader :id, :name, :description, :price, :available_on, :discontinue_on, :deleted_at, :slug, :meta_description, :promotionable, :meta_title, :total_on_hand, :variants, :product_images, :category
     def initialize(attributes)
       @id = attributes["id"]
       @name = attributes["name"]
@@ -12,8 +12,11 @@ module Kirus
       @meta_description = attributes["meta_description"]
       @promotionable = attributes["promotionable"]
       @meta_title = attributes["meta_title"]
-      @price = attributes["master_price"]
+      @price = attributes["current_price"]
+      @total_on_hand = attributes["total_on_hand"]
       @variants = attributes["variants_including_master"].map { |attributes| Kirus::Variant.new(attributes) }
+      @product_images = attributes["product_images"]
+      @category = attributes["category"]
     end
 
     def self.find(id)
@@ -54,6 +57,22 @@ module Kirus
       elsif response.status == 500
         []
       end
+    end
+
+    def image_s
+      self.product_images.first.present? ? self.product_images.first["image"]["small"]["url"] : false
+    end
+
+    def image_m
+      self.product_images.first.present? ? self.product_images.first["image"]["medium"]["url"] : false
+    end
+
+    def image_l
+      self.product_images.first.present? ? self.product_images.first["image"]["large"]["url"] : false
+    end
+
+    def image_xl
+      self.product_images.first.present? ? self.product_images.first["image"]["xlarge"]["url"] : false
     end
 
     def self.first
