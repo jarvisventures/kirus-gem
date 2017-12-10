@@ -1,9 +1,10 @@
 module Kirus
   class Category
-    attr_reader :id, :name
+    attr_reader :id, :name, :slug
     def initialize(attributes)
       @id = attributes["id"]
       @name = attributes["name"]
+      @slug = attributes["slug"]
     end
 
     def as_json(*)
