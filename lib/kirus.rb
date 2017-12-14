@@ -12,6 +12,8 @@ require 'kirus/company'
 require 'kirus/order'
 require 'kirus/product'
 require 'kirus/variant'
+require 'kirus/state'
+require 'kirus/country'
 
 API_URL = "http://localhost:3000"
 # API_URL = "https://kirus-api-staging.herokuapp.com"
