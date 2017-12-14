@@ -15,8 +15,8 @@ require 'kirus/variant'
 require 'kirus/state'
 require 'kirus/country'
 
-API_URL = "http://localhost:3000"
-# API_URL = "https://kirus-api-staging.herokuapp.com"
+# API_URL = "http://localhost:3000"
+API_URL = "https://kirus-api-staging.herokuapp.com"
 
 module Kirus
   def make_request(method, path)
