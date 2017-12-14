@@ -126,7 +126,7 @@ module Kirus
 
       output(response)
     end
-
+    
     # New update method that should maybe replace the old one????
     def update_order(order_info)
       conn = Faraday.new(:url => API_URL) do |faraday|
@@ -160,6 +160,35 @@ module Kirus
       str << self.billing_address["city"] + ", "
       str << self.billing_address["state_abbr"] + " "
       str << self.billing_address["zipcode"]
+    end
+    
+    def authorize_payment(attributes)
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+      response = conn.post "/orders/#{self.id}/authorize_payment" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+        request.body = attributes
+      end
+      output(response)
+    end
+
+    def complete
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+      response = conn.post "/orders/#{self.id}/complete_order" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+      output(response)
     end
 
     private
