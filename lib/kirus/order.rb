@@ -109,6 +109,9 @@ module Kirus
     end
 
     def save
+
+      debugger
+
       conn = Faraday.new(:url => API_URL) do |faraday|
         faraday.request :json
         faraday.response :json
@@ -123,6 +126,16 @@ module Kirus
 
       output(response)
     end
+
+    # TODO finish this method
+    # def shipping_address
+    #   str = ""
+    #   str << self.shipping_address.address1 + " "
+    #   str << self.shipping_address.address2 + " " if self.shipping_address.address2.present?
+    #   str << self.shipping_address.city + ", "
+    #   str << self.shipping_address.state.abbr + " "
+    #   str << self.shipping_address.zip
+    # end
 
     private
 
