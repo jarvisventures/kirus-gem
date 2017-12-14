@@ -124,6 +124,35 @@ module Kirus
       output(response)
     end
 
+    def authorize_payment(attributes)
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+      response = conn.post "/orders/#{self.id}/authorize_payment" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+        request.body = attributes
+      end
+      output(response)
+    end
+
+    def complete
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+      response = conn.post "/orders/#{self.id}/complete_order" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+      end
+      output(response)
+    end
+
     private
 
     def output(response)
