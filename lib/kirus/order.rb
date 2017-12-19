@@ -1,14 +1,16 @@
 module Kirus
   class Order
-    attr_reader :id, :state, :number, :item_count, :order_items, :item_total, :shipping_address, :shipments
+    attr_reader :id, :email, :state, :number, :item_count, :order_items, :item_total, :shipping_address, :billing_address, :shipments
     def initialize(attributes)
       @id = attributes["id"]
+      @email = attributes["email"]
       @state = attributes["state"]
       @number = attributes["number"]
       @item_count = attributes["item_count"]
       @order_items = attributes["order_items"]
       @item_total = attributes["item_total"]
       @shipping_address = attributes["shipping_address"]
+      @billing_address = attributes["billing_address"]
       @shipments = attributes["shipments"]
     end
 
@@ -126,7 +128,7 @@ module Kirus
 
       output(response)
     end
-    
+
     # New update method that should maybe replace the old one????
     def update_order(order_info)
       conn = Faraday.new(:url => API_URL) do |faraday|
@@ -146,22 +148,34 @@ module Kirus
     # Returns a nice string of the shipping address
     def get_shipping_address
       str = ""
-      str << self.shipping_address["address1"] + " "
-      str << self.shipping_address["address2"] + " " if self.shipping_address["address2"].present?
-      str << self.shipping_address["city"] + ", "
-      str << self.shipping_address["state_abbr"] + " "
-      str << self.shipping_address["zipcode"]
+      if self.shipping_address
+        str << self.shipping_address["address1"] + " "
+        str << self.shipping_address["address2"] + " " if self.shipping_address["address2"].present?
+        str << self.shipping_address["city"] + ", "
+        str << self.shipping_address["state_abbr"] + " "
+        str << self.shipping_address["zipcode"]
+      else
+        str = "No shipping address found"
+      end
+      str
     end
 
+    # Returns a nice string of the billing address
     def get_billing_address
       str = ""
-      str << self.billing_address["address1"] + " "
-      str << self.billing_address["address2"] + " " if self.billing_address["address2"].present?
-      str << self.billing_address["city"] + ", "
-      str << self.billing_address["state_abbr"] + " "
-      str << self.billing_address["zipcode"]
+      if self.billing_address
+        str << self.billing_address["address1"] + " "
+        str << self.billing_address["address2"] + " " if self.billing_address["address2"].present?
+        str << self.billing_address["city"] + ", "
+        str << self.billing_address["state_abbr"] + " "
+        str << self.billing_address["zipcode"]
+        str = "Same as shipping address" if str == self.get_shipping_address
+      else
+        str = "No billing address found"
+      end
+      str
     end
-    
+
     def authorize_payment(attributes)
       conn = Faraday.new(:url => API_URL) do |faraday|
         faraday.request :json
