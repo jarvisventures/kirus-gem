@@ -155,8 +155,9 @@ module Kirus
         str << self.shipping_address["state_abbr"] + " "
         str << self.shipping_address["zipcode"]
       else
-        "No shipping address found"
+        str = "No shipping address found"
       end
+      str
     end
 
     # Returns a nice string of the billing address
@@ -170,8 +171,9 @@ module Kirus
         str << self.billing_address["zipcode"]
         str = "Same as shipping address" if str == self.get_shipping_address
       else
-        "No billing address found"
+        str = "No billing address found"
       end
+      str
     end
 
     def authorize_payment(attributes)
