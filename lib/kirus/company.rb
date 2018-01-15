@@ -1,98 +1,22 @@
+require 'active_resource'
 module Kirus
-  class Company
-    attr_reader :id, :name
-    def initialize(attributes)
-      @id = attributes["id"]
-      @name = attributes["name"]
-    end
+  class Company < ActiveResource::Base
+    self.site = API_URL
+    self.headers['Authorization'] = "Token token=#{TOKEN}"
+    self.headers['X-API-KEY'] = API_KEY
 
-    def as_json(*)
-      {
-        id: @id,
-        name: @name
-      }
-    end
-
-    def self.find(id)
-      conn = Faraday.new(:url => API_URL)
-      response = conn.get "/companies/#{id}" do |request|
-        request.headers['Content-Type'] = 'application/json'
-        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-      end
-
-      attributes = JSON.parse(response.body)
-      new(attributes)
-    end
-
-    def self.all
-      conn = Faraday.new(:url => API_URL)
-      response = conn.get "/companies" do |request|
-        request.headers['Content-Type'] = 'application/json'
-        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-      end
-
-      companies = JSON.parse(response.body)
-      companies.map { |attributes| new(attributes) }
-    end
-
-    def self.first
-      self.all.first
-    end
-
-    def self.second
-      self.all.second
-    end
-
-    def self.third
-      self.all.third
-    end
-
-    def self.last
-      self.all.last
-    end
-
-    def delete
-      conn = Faraday.new(:url => API_URL)
-      response = conn.delete "/companies/#{self.id}" do |request|
-        request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
-        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-      end
-
-      output(response)
-    end
-
-    def update(attributes)
-      attributes.each do |key, value|
-        instance_variable_set("@#{key.to_s}", value)
-      end
-      self.save
-    end
-
-    def save
-      conn = Faraday.new(:url => API_URL) do |faraday|
-        faraday.request :json
-        faraday.response :json
-        faraday.adapter  Faraday.default_adapter
-      end
-      response = conn.put "/companies/#{self.id}" do |request|
-        request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
-        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-        request.body = self.as_json
-      end
-
-      output(response)
-    end
-
-    private
-
-    def output(response)
-      output = Hash.new
-      output[:status] = response.status
-      output[:response] = response.body
-
-      output
-    end
+    # belongs_to :address, optional: true
+    # has_many :company_markets
+    # has_many :markets
+    # has_many :warehouses
+    # has_many :users
+    # has_many :products
+    # has_many :categories
+    # has_many :option_types
+    # has_many :option_val
+    # has_many :payment_methods
+    # has_many :shipping_categories
+    # has_many :shipping_methods
+    # has_many :shipments
   end
 end

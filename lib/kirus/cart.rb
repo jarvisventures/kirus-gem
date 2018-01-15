@@ -1,5 +1,6 @@
 module Kirus
   class Cart
+    
     def self.add_to_cart(variant_id, quantity, order_id = nil)
       if order_id.present?
         add_item_to_existing_order(variant_id, quantity, order_id)
