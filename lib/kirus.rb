@@ -1,3 +1,7 @@
+API_URL = "http://localhost:3000"
+TOKEN = "gHxPG7BshnOe9T"
+API_KEY = "Oe9TmTPW3C"
+
 require 'kirus/version'
 require 'faraday'
 require 'faraday_middleware'
@@ -15,7 +19,6 @@ require 'kirus/variant'
 require 'kirus/state'
 require 'kirus/country'
 
-API_URL = "http://localhost:3000"
 # API_URL = "https://kirus-api-staging.herokuapp.com"
 
 module Kirus
