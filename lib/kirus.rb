@@ -18,6 +18,9 @@ require 'kirus/product'
 require 'kirus/variant'
 require 'kirus/state'
 require 'kirus/country'
+require 'kirus/lead'
+require 'kirus/company_market'
+require 'kirus/market'
 
 # API_URL = "https://kirus-api-staging.herokuapp.com"
 

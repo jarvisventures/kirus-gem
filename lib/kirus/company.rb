@@ -6,8 +6,8 @@ module Kirus
     self.headers['X-API-KEY'] = API_KEY
 
     # belongs_to :address, optional: true
-    # has_many :company_markets
-    # has_many :markets
+    has_many :company_markets, class_name: "Kirus::Market"
+    has_many :markets, class_name: "Kirus::CompanyMarket"
     # has_many :warehouses
     # has_many :users
     # has_many :products
