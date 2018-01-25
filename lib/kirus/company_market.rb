@@ -7,5 +7,6 @@ module Kirus
 
     belongs_to :company, class_name: "Kirus::Company"
     belongs_to :market, class_name: "Kirus::Market"
+    has_many :leads, class_name: "Kirus::Lead"
   end
 end

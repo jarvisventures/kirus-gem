@@ -8,8 +8,5 @@ module Kirus
     has_many :company_markets, class_name: "Kirus::CompanyMarket"
     has_many :companies, class_name: "Kirus::Company"
 
-    def test
-      debugger
-    end
   end
 end
