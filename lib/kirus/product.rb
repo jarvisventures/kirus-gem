@@ -15,19 +15,19 @@ module Kirus
     # has_many :product_images
 
     def image_s
-      self.product_images.first.present? ? self.product_images.first.image.small.url : false
+      self.product_images.first.present? ? self.product_images.first.image.small.url : nil
     end
 
     def image_m
-      self.product_images.first.present? ? self.product_images.first.image.medium.url : false
+      self.product_images.first.present? ? self.product_images.first.image.medium.url : nil
     end
 
     def image_l
-      self.product_images.first.present? ? self.product_images.first.image.large.url : false
+      self.product_images.first.present? ? self.product_images.first.image.large.url : nil
     end
 
     def image_xl
-      self.product_images.first.present? ? self.product_images.first.image.xlarge.url : false
+      self.product_images.first.present? ? self.product_images.first.image.xlarge.url : nil
     end
   end
 end
