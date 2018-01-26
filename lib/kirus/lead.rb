@@ -11,7 +11,7 @@ module Kirus
     # # belongs_to :shipping_address
     # # belongs_to :billing_address
     # has_many :notes
-    # has_many :lead_orders
-    # has_many :orders
+    has_many :lead_orders, class_name: "Kirus::LeadOrder"
+    has_many :orders, class_name: "Kirus::Order"
   end
 end

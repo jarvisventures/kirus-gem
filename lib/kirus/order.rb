@@ -12,16 +12,13 @@ module Kirus
     # belongs_to :approver, class_name: "Kirus::User", optional: true
     # belongs_to :canceler, class_name: "Kirus::User", optional: true
     # belongs_to :created_by, class_name: "Kirus::User", optional: true
-    # belongs_to :company
-    # belongs_to :company_market
-    # has_one :market
-    # has_many :countries
-    # has_many :order_items
-    # has_many :variants
-    # has_many :stocks
-    # has_many :warehouses
-    # has_many :shipments
-    # has_many :payments
+    belongs_to :company, class_name: "Kirus::Company"
+    belongs_to :company_market, class_name: "Kirus::CompanyMarket"
+    has_one :market, class_name: "Kirus::Market"
+    has_many :order_items, class_name: "Kirus::OrderItem"
+    has_many :variants, class_name: "Kirus::Variant"
+    has_many :lead_orders, class_name: "Kirus::LeadOrder"
+    
     # New update method that should maybe replace the old one????
     def update_order(order_info)
       conn = Faraday.new(:url => API_URL) do |faraday|

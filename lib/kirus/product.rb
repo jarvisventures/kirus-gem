@@ -5,7 +5,7 @@ module Kirus
     self.headers['Authorization'] = "Token token=#{TOKEN}"
     self.headers['X-API-KEY'] = API_KEY
     # self.include_root_in_json = false
-    belongs_to :company
+    belongs_to :company, class_name: "Kirus::Company"
     belongs_to :category, class_name: "Kirus::Category"
     has_many :variants, class_name: "Kirus::Variant"
     # belongs_to :shipping_category
