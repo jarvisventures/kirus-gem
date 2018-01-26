@@ -7,7 +7,10 @@ module Kirus
 
     belongs_to :country, class_name: "Kirus::Country"
 
-    private
-
+    def self.state_list_for_dropdown
+      state_list = Array.new
+      self.all.each { |state| state_list << [state.abbr, state.abbr] }
+      return state_list.sort
+    end
   end
 end
