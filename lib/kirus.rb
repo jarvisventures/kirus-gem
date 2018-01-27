@@ -10,6 +10,7 @@ require 'ostruct'
 
 require 'kirus/admin/market'
 require 'kirus/admin/user'
+require 'kirus/user'
 require 'kirus/cart'
 require 'kirus/category'
 require 'kirus/company'
