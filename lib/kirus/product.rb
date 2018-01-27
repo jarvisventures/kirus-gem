@@ -5,14 +5,14 @@ module Kirus
     self.headers['Authorization'] = "Token token=#{TOKEN}"
     self.headers['X-API-KEY'] = API_KEY
     # self.include_root_in_json = false
-    belongs_to :company
+    belongs_to :company, class_name: "Kirus::Company"
     belongs_to :category, class_name: "Kirus::Category"
     has_many :variants, class_name: "Kirus::Variant"
     # belongs_to :shipping_category
     # has_many :stocks
     # has_many :warehouses
     # has_many :markets
-    # has_many :product_images
+    has_many :product_images, class_name: "Kirus::ProductImage"
 
     def image_s
       self.product_images.first.present? ? self.product_images.first.image.small.url : nil
