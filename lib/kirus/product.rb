@@ -12,7 +12,7 @@ module Kirus
     # has_many :stocks
     # has_many :warehouses
     # has_many :markets
-    # has_many :product_images
+    has_many :product_images, class_name: "Kirus::ProductImage"
 
     def image_s
       self.product_images.first.present? ? self.product_images.first.image.small.url : nil

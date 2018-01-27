@@ -6,12 +6,12 @@ module Kirus
     self.headers['X-API-KEY'] = API_KEY
 
     belongs_to :product, class_name: "Kirus::Product"
-    has_many :order_items
+    has_many :order_items, class_name: "Kirus::OrderItem"
     # has_many :stocks
     # has_many :warehouses
     # has_many :option_value_variants
     # has_many :option_values
     # has_many :option_types
-    # has_many :product_images
+    has_many :product_images, class_name: "Kirus::ProductImage"
   end
 end
