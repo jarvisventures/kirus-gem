@@ -18,7 +18,7 @@ module Kirus
     has_many :order_items, class_name: "Kirus::OrderItem"
     has_many :variants, class_name: "Kirus::Variant"
     has_many :lead_orders, class_name: "Kirus::LeadOrder"
-    
+
     # New update method that should maybe replace the old one????
     def update_order(order_info)
       conn = Faraday.new(:url => API_URL) do |faraday|
