@@ -1,4 +1,5 @@
-API_URL = "http://localhost:3000"
+# API_URL = "http://localhost:3000"
+API_URL = "https://kirus-api-staging.herokuapp.com"
 TOKEN = "gHxPG7BshnOe9T"
 API_KEY = "Oe9TmTPW3C"
 
@@ -25,7 +26,6 @@ require 'kirus/state'
 require 'kirus/user'
 require 'kirus/variant'
 
-# API_URL = "https://kirus-api-staging.herokuapp.com"
 
 module Kirus
   def make_request(method, path)
