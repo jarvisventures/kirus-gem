@@ -31,7 +31,9 @@ module Kirus
         request.headers['Content-Type'] = 'application/json'
         request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-        request.body = order_info.to_json
+        body = Hash.new
+        body[:order] = order_info
+        request.body = body.to_json
       end
     end
 
