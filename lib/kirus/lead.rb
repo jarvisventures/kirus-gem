@@ -13,5 +13,6 @@ module Kirus
     # has_many :notes
     has_many :lead_orders, class_name: "Kirus::LeadOrder"
     has_many :orders, class_name: "Kirus::Order"
+
   end
 end
