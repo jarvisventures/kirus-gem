@@ -17,7 +17,7 @@ module Kirus
 
       response = conn.post "/lead_orders/#{self.id}/blastoise" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
 

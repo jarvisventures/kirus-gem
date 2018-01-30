@@ -1,6 +1,6 @@
 module Kirus
   class Cart
-    
+
     def self.add_to_cart(variant_id, quantity, order_id = nil)
       if order_id.present?
         add_item_to_existing_order(variant_id, quantity, order_id)
@@ -22,7 +22,7 @@ module Kirus
 
       response = conn.post "/orders" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
         request.body = @order.to_json
       end

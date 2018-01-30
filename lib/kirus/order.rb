@@ -29,7 +29,7 @@ module Kirus
 
       response = conn.patch "/orders/#{self.id}" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
         request.body = order_info.to_json
       end
@@ -74,11 +74,11 @@ module Kirus
       end
       response = conn.post "/orders/#{self.id}/authorize_payment" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
-        request.body = attributes
+        request.body = attributes.to_json
       end
-      output(response)
+      # output(response)
     end
 
     def complete
@@ -89,7 +89,7 @@ module Kirus
       end
       response = conn.post "/orders/#{self.id}/complete_order" do |request|
         request.headers['Content-Type'] = 'application/json'
-        request.headers['WWW-Authenticate'] = 'gHxPG7BshnOe9T'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
       end
       output(response)

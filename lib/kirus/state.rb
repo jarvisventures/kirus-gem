@@ -9,7 +9,7 @@ module Kirus
 
     def self.state_list_for_dropdown
       state_list = Array.new
-      self.all.each { |state| state_list << [state.abbr, state.abbr] }
+      self.all.each { |state| state_list << [state.abbr, state.id] }
       return state_list.sort
     end
   end
