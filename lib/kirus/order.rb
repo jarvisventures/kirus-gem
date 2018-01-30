@@ -80,7 +80,7 @@ module Kirus
         request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
         request.body = attributes.to_json
       end
-      # output(response)
+      output(response)
     end
 
     def complete

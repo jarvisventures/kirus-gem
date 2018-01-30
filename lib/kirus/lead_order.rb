@@ -30,7 +30,21 @@ module Kirus
         nil
       end
     end
+
+    def self.update_seen_at(id, lead_order_info)
+      conn = Faraday.new(:url => API_URL) do |faraday|
+        faraday.request :json
+        faraday.response :json
+        faraday.adapter  Faraday.default_adapter
+      end
+
+      response = conn.put "/lead_orders/#{id}" do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.headers['Authorization'] = "Token token=#{TOKEN}"
+        request.headers['X-API-KEY'] = 'Oe9TmTPW3C'
+        request.body = lead_order_info.to_json
+      end
+    end
+
   end
-
-
 end
