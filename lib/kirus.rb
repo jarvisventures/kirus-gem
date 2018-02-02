@@ -1,5 +1,5 @@
-# API_URL = "http://localhost:3000"
-API_URL = "https://kirus-api-staging.herokuapp.com"
+API_URL = "http://localhost:3000"
+# API_URL = "https://kirus-api-staging.herokuapp.com"
 TOKEN = "gHxPG7BshnOe9T"
 API_KEY = "Oe9TmTPW3C"
 
@@ -18,6 +18,7 @@ require 'kirus/country'
 require 'kirus/lead_order'
 require 'kirus/lead'
 require 'kirus/market'
+require 'kirus/note'
 require 'kirus/order_item'
 require 'kirus/order'
 require 'kirus/product'
